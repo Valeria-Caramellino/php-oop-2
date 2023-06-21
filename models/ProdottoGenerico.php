@@ -5,14 +5,14 @@ class ProdottoGenerico{
     public $nome;
     public $prezzo;
     public $tipo;
-    public $foto;
+    
 
-    function __construct($nome,$prezzo, TipiProdotto $tipo, $foto)
+    function __construct($nome,$prezzo, TipiProdotto $tipo)
     {
         $this->nome = $nome;
         $this->prezzo = $prezzo;
         $this->tipo = $tipo;
-        $this->foto = $foto;
+       
 
     }
 

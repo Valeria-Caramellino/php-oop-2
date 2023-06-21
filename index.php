@@ -3,16 +3,19 @@
 require __DIR__ . "/models/Categoria.php";
 require __DIR__ . "/models/TipiProdotto.php";
 require __DIR__ . "/models/ProdottoGenerico.php";
-$nuovoOggetto = new TipiProdotto("cuccia",new Categoria('cani'));
 
-$prodoct1 = new ProdottoGenerico("cuccia morbida",20, $nuovoOggetto,"https://www.omlet.it/images/cache/400/400/Topology_Dog_Bed_with_Bolster_Topper_and_Black_Metal_Hairpin_Feet_-_Medium.jpg");
-$prodoct2 = new ProdottoGenerico('asta con piuma',40,new TipiProdotto('gioco',new Categoria('gatti')),"https://www.dmail.it/on/demandware.static/-/Sites-dret-catalog/default/dw2e740ba3/images_dmail/large/509459l_1.jpg");
+$Gatti=new Categoria('Gatti');
+$Cani= new Categoria('Cani');
+
+
+$CucciaGatti= new TipiProdotto('cuccia',$Gatti,"https://www.dmail.it/on/demandware.static/-/Sites-dret-catalog/default/dw2e740ba3/images_dmail/large/509459l_1.jpg");
+$CucciaCani = new TipiProdotto("cuccia", $Cani,"https://www.omlet.it/images/cache/400/400/Topology_Dog_Bed_with_Bolster_Topper_and_Black_Metal_Hairpin_Feet_-_Medium.jpg");
+
+$prodoct1 = new ProdottoGenerico("cuccia morbida",20, $CucciaCani);
+$prodoct2 = new ProdottoGenerico('asta con piuma',40,$CucciaGatti );
 
 $insiemeProdotti = [$prodoct1,$prodoct2];
-/*
-var_dump( $prodoct1 );
 
-var_dump($prodoct2);*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +58,7 @@ var_dump($prodoct2);*/
                         <p>Prezzo: <span class="text-primary"><?php echo $prodotto->prezzo ?> </span> </p>
                         <p>Tipo di prodotto :  <span class="text-primary"> <?php echo $prodotto->tipo->nome ?></span> </p>
                         <p>Il tipo di prodotto va bene per i nostri amici <span class="text-primary"> <?php echo $prodotto->tipo->categoria->nome ?>  </span></p>
-                        <img class=" my-2" src='<?= $prodotto->foto  ?>' alt="<?= $prodotto->nome ?>">
+                        <img class=" my-2" src='<?= $prodotto->tipo->foto  ?>' alt="<?= $prodotto->tipo->nome ?>">
                 </div>
                 <?php } ?>
             </div>
