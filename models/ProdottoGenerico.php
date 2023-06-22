@@ -4,18 +4,28 @@ class ProdottoGenerico{
 
     public $nome;
     public $prezzo;
-    public $tipo;
+    public $disponibilita;
+    public $quantita;
+    public $immagine;
+    public $categoria;
     
 
-    function __construct($nome,$prezzo, TipiProdotto $tipo)
+    function __construct($nome,$prezzo,$disponibilita, $quantita,$immagine, Categoria $categoria)
     {
         $this->nome = $nome;
         $this->prezzo = $prezzo;
-        $this->tipo = $tipo;
-       
+        $this->disponibilita= $disponibilita;
+        $this->quantita=$quantita;
+        $this->immagine=$immagine;
+        $this->categoria= $categoria;
+
+
+        
 
     }
-
+    public function getClass(){
+        return get_class();
+    }
 }
 
 ?>
