@@ -27,8 +27,17 @@ class ProdottoGenerico{
         
 
     }
+    /**ho usato direttamente funzione get_class() in html per provare */
     public function getClass(){
         return get_class();
+    }
+
+    public function setPrezzo($valore){
+        $this->prezzo= $valore;
+    }
+
+    public function getPrezzo(){
+        return $this->prezzo;
     }
 }
 

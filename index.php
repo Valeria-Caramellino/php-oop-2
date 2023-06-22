@@ -87,11 +87,11 @@ $InsiemeProdotti[5]->setPeso(20);
                         </h5>
                         <p>Prezzo: 
                             <span class="text-primary">
-                                <?php echo $prodotto->prezzo ?>  
+                                <?php echo $prodotto->getPrezzo() ?>  
                             </span>€
                         </p>
-                        <p>Argomento:<?php echo get_class($prodotto) ?></p> 
-                        <p>Categoria: <span><?php echo $prodotto->categoria->nome ?></span></p>
+                        <p>Argomento: <span class="text-primary"><?php echo get_class($prodotto) ?> </span> </p> 
+                        <p>Categoria: <span class="text-primary"><?php echo $prodotto->categoria->nome ?></span></p>
                         <?php if($prodotto instanceof Game){ ?>
                           <p>Colore:<span class="text-primary">  <?php echo $prodotto->colore ?> </span>  </p>  
                         <?php }elseif ($prodotto instanceof Food){ ?>
