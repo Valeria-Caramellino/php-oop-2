@@ -1,4 +1,8 @@
 <?php 
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
+
 
 require __DIR__ . "/models/Categoria.php";
 require __DIR__ . "/models/ProdottoGenerico.php";
@@ -6,16 +10,13 @@ require __DIR__."/models/Food.php";
 require __DIR__ ."/models/Game.php";
 
 
-/*divisione di genri*/
-
-
-
 /*divisione per categoria*/
-$GattiCategoria=new Categoria('Gatti');
-$CaniCategoria= new Categoria('Cani','fa-solid fa-cat');
-
+$GattiCategoria=new Categoria('Gatti','fa-solid fa-cat');
+$CaniCategoria= new Categoria('Cani');
+/**insime delle categorie */
 $insiemeCategorie =[$GattiCategoria,$CaniCategoria];
 
+/**insieme dei prodotti */
 $InsiemeProdotti = [
     new ProdottoGenerico('nome prodotto',20,true,80,'https://media.gettyimages.com/id/1276788283/it/foto/giovane-donna-con-cucciolo-di-corgi-ridente-sfondo-della-natura.jpg?s=612x612&w=0&k=20&c=YLMt5GiRhEqlQr2IR7GYb5-173DuTT0PuiMWdZ5wn3M=',$GattiCategoria),
     new ProdottoGenerico('nome prodotto',80,true,70,'https://media.gettyimages.com/id/1276788283/it/foto/giovane-donna-con-cucciolo-di-corgi-ridente-sfondo-della-natura.jpg?s=612x612&w=0&k=20&c=YLMt5GiRhEqlQr2IR7GYb5-173DuTT0PuiMWdZ5wn3M=',$CaniCategoria),
@@ -24,6 +25,12 @@ $InsiemeProdotti = [
     new Game('nome',75,true,122,'https://media.gettyimages.com/id/1276788283/it/foto/giovane-donna-con-cucciolo-di-corgi-ridente-sfondo-della-natura.jpg?s=612x612&w=0&k=20&c=YLMt5GiRhEqlQr2IR7GYb5-173DuTT0PuiMWdZ5wn3M=',$CaniCategoria,'gioco','red'),
     new Game('nome',85,true,46,'https://media.gettyimages.com/id/1276788283/it/foto/giovane-donna-con-cucciolo-di-corgi-ridente-sfondo-della-natura.jpg?s=612x612&w=0&k=20&c=YLMt5GiRhEqlQr2IR7GYb5-173DuTT0PuiMWdZ5wn3M=',$GattiCategoria,'gioco','viola'),
 ];
+$InsiemeProdotti[0]->setPeso(-100);
+$InsiemeProdotti[1]->setPeso(0);
+$InsiemeProdotti[2]->setPeso(70);
+$InsiemeProdotti[3]->setPeso(20);
+$InsiemeProdotti[4]->setPeso(50);
+$InsiemeProdotti[5]->setPeso(20);
 
 ?>
 <!DOCTYPE html>
@@ -83,13 +90,28 @@ $InsiemeProdotti = [
                                 <?php echo $prodotto->prezzo ?>  
                             </span>€
                         </p>
+                        <p>Argomento:<?php echo get_class($prodotto) ?></p> 
                         <p>Categoria: <span><?php echo $prodotto->categoria->nome ?></span></p>
                         <?php if($prodotto instanceof Game){ ?>
-                          <p>colore: <?php echo $prodotto->colore ?> </p>  
+                          <p>Colore:<span class="text-primary">  <?php echo $prodotto->colore ?> </span>  </p>  
                         <?php }elseif ($prodotto instanceof Food){ ?>
-                           <p> calorie: <?php  echo $prodotto->calorie ?></p> 
+                           <p> Calorie: <span class="text-primary"><?php  echo $prodotto->calorie ?>  </span> </p> 
                         <?php }  ?>
                         <img src="<?php echo $prodotto->immagine?>" alt="<?php $prodotto->nome ?>">
+                        <p>Il preso del prodotto é : 
+                            <span class="text-primary"> 
+                            <?php try{
+                                echo $prodotto ->getPeso();
+                            }catch(RangeException $e){
+                                echo 'Non disponibile perchè:' . $e->getMessage();
+                            }catch(Exception $e){
+                                echo 'Non disponibile perchè:' . $e->getMessage();
+                            }
+                            
+                            ?> 
+                            </span> 
+                        </p>
+                       
                     </div>
                 <?php } ?>
             </div>

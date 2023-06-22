@@ -1,6 +1,10 @@
 <?php 
 
+require_once __DIR__."/../models/traits/Peso.php";
+
 class ProdottoGenerico{
+
+    use Peso;
 
     public $nome;
     public $prezzo;
