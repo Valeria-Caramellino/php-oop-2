@@ -105,7 +105,7 @@ $InsiemeProdotti[5]->setPeso(20);
                             }catch(RangeException $e){
                                 echo 'Non disponibile perchè:' . $e->getMessage();
                             }catch(Exception $e){
-                                echo 'Non disponibile perchè:' . $e->getMessage();
+                                echo 'Non disponibile:' . $e->getMessage();
                             }
                             
                             ?> 

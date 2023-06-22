@@ -7,7 +7,7 @@ trait Peso{
     public function getPeso(){
         
         if($this->peso < 0){
-            throw new RangeException("il peso impostato ha un valore negativo");
+            throw new Exception("il peso impostato ha un valore negativo");
         }elseif($this->peso == 0){
             throw new RangeException("il peso equivale a 0");
         }
