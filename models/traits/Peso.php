@@ -12,7 +12,7 @@ trait Peso{
             throw new RangeException("il peso equivale a 0");
         }
     
-        return $this->peso;
+        return $this->peso . 'kg';
     }
 
     public function setPeso($peso){
